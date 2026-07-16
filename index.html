@@ -218,6 +218,37 @@
   footer{ position: relative; z-index: 2; text-align: center; padding: 40px 6vw 60px; color: var(--pink-ink-soft); font-size: 0.9rem; }
   footer .heart{ color: var(--pink-deep); }
 
+  /* ---------- modal chi tiết bài tập ---------- */
+  .modal-overlay{ position: fixed; inset: 0; background: rgba(92,70,51,.45); backdrop-filter: blur(4px);
+    display: flex; align-items: center; justify-content: center; padding: 24px; z-index: 200;
+    opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+  .modal-overlay.open{ opacity: 1; pointer-events: auto; }
+  .modal-card{ background: var(--white-soft); border-radius: 28px; max-width: 640px; width: 100%; max-height: 85vh; overflow-y: auto;
+    padding: 36px 34px; box-shadow: var(--shadow-soft); position: relative; transform: translateY(30px) scale(.97);
+    transition: transform .35s ease; }
+  .modal-overlay.open .modal-card{ transform: translateY(0) scale(1); }
+  .modal-close{ position: absolute; top: 20px; right: 22px; width: 38px; height: 38px; border-radius: 50%;
+    border: 2px solid var(--pink-mid); background: #fff; color: var(--pink-deep); font-size: 1.1rem; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: transform .3s ease; }
+  .modal-close:hover{ transform: rotate(90deg); background: var(--pink-pale); }
+  .modal-head{ display: flex; align-items: center; gap: 14px; margin-bottom: 20px; padding-right: 40px; }
+  .modal-head .modal-icon{ font-size: 2.3rem; line-height: 1; }
+  .modal-head h3{ font-size: 1.35rem; line-height: 1.25; color: var(--pink-ink); margin: 0; }
+  .modal-fields{ background: var(--pink-pale); border-radius: 18px; padding: 18px 20px; margin-bottom: 22px; font-size: .95rem; line-height: 1.7; }
+  .modal-fields .row{ margin-bottom: 10px; color: var(--pink-ink-soft); }
+  .modal-fields .row:last-child{ margin-bottom: 0; }
+  .modal-fields b{ color: var(--pink-deep); }
+  .modal-link{ display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, var(--gold), var(--pink-mid));
+    color: #fff; padding: 11px 22px; border-radius: 999px; font-weight: 800; font-size: .9rem; text-decoration: none;
+    margin-bottom: 24px; box-shadow: var(--shadow-soft); transition: transform .3s ease; }
+  .modal-link:hover{ transform: translateY(-3px); }
+  .detail-list{ display: flex; flex-direction: column; gap: 14px; }
+  .detail-point{ display: flex; gap: 10px; font-size: .93rem; color: var(--pink-ink-soft); line-height: 1.65; }
+  .detail-point .dot{ width: 9px; height: 9px; border-radius: 50%; background: var(--pink-mid); margin-top: 7px; flex-shrink: 0; }
+  .detail-point b{ color: var(--pink-ink); }
+  .detail-point.summary{ background: var(--pink-pale); border-radius: 14px; padding: 14px 16px; }
+  .detail-point.summary .dot{ background: var(--pink-deep); }
+
   @media (max-width: 760px){
     nav{ flex-direction: column; gap: 12px; padding: 14px 5vw; }
     .hero{ justify-content: center; text-align: center; }
@@ -333,7 +364,7 @@
       <h3>🗂️ Quản lý tệp tin &amp; thư mục</h3>
       <p>Thành thạo thao tác với tệp, thư mục để xây thói quen sắp xếp dữ liệu học tập gọn gàng, khoa học.</p>
       <div class="meta">
-        <a href="#" class="btn btn-ghost" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
+        <a href="#" class="btn btn-ghost detail-btn" data-idx="0" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
         <a href="https://drive.google.com/file/d/1jUuheSvjzrUdZ30xw4dOOxcdSUq0B-tj/view?usp=drive_link" target="_blank" rel="noopener" class="btn btn-primary" style="padding:9px 18px; font-size:0.85rem;">GG Drive</a>
       </div>
     </div>
@@ -342,7 +373,7 @@
       <h3>🔎 Đánh giá học thuật</h3>
       <p>Rèn khả năng tìm kiếm, sàng lọc và đánh giá độ tin cậy của nguồn tài liệu trước khi đưa vào bài viết.</p>
       <div class="meta">
-        <a href="#" class="btn btn-ghost" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
+        <a href="#" class="btn btn-ghost detail-btn" data-idx="1" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
         <a href="https://drive.google.com/file/d/1wXNVi9x4PdUUEvqXigWDU1H1F31WY1wg/view?usp=drive_link" target="_blank" rel="noopener" class="btn btn-primary" style="padding:9px 18px; font-size:0.85rem;">GG Drive</a>
       </div>
     </div>
@@ -351,7 +382,7 @@
       <h3>🤖 Viết Prompt hiệu quả</h3>
       <p>Làm chủ cách xây dựng câu lệnh (prompt) có cấu trúc để khai thác tối đa năng lực của các mô hình ngôn ngữ lớn.</p>
       <div class="meta">
-        <a href="#" class="btn btn-ghost" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
+        <a href="#" class="btn btn-ghost detail-btn" data-idx="2" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
         <a href="https://drive.google.com/file/d/1K-_LqeNYu0N5WNBrqx59kOIqZRW2NNBL/view?usp=drive_link" target="_blank" rel="noopener" class="btn btn-primary" style="padding:9px 18px; font-size:0.85rem;">GG Drive</a>
       </div>
     </div>
@@ -360,7 +391,7 @@
       <h3>🤝 Hợp tác trực tuyến</h3>
       <p>Sử dụng thành thạo các công cụ cộng tác trực tuyến để phối hợp làm việc nhóm trơn tru hơn.</p>
       <div class="meta">
-        <a href="#" class="btn btn-ghost" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
+        <a href="#" class="btn btn-ghost detail-btn" data-idx="3" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
         <a href="https://drive.google.com/file/d/1D_aosycNsu8bsRnPVQMLehY-FlwMp6nE/view?usp=drive_link" target="_blank" rel="noopener" class="btn btn-primary" style="padding:9px 18px; font-size:0.85rem;">GG Drive</a>
       </div>
     </div>
@@ -369,7 +400,7 @@
       <h3>🎨 Sáng tạo nội dung với AI</h3>
       <p>Ứng dụng AI tạo sinh để làm sản phẩm trình bày sinh động hơn mà vẫn giữ được dấu ấn cá nhân.</p>
       <div class="meta">
-        <a href="#" class="btn btn-ghost" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
+        <a href="#" class="btn btn-ghost detail-btn" data-idx="4" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
         <a href="https://drive.google.com/file/d/1S8Oi1Vss0kzMg9Byl3ylenz1NzRc8tjl/view?usp=drive_link" target="_blank" rel="noopener" class="btn btn-primary" style="padding:9px 18px; font-size:0.85rem;">GG Drive</a>
       </div>
     </div>
@@ -378,12 +409,28 @@
       <h3>⚖️ Sử dụng AI có trách nhiệm</h3>
       <p>Hiểu rõ nguyên tắc liêm chính học thuật khi ứng dụng AI vào việc học và nghiên cứu.</p>
       <div class="meta">
-        <a href="#" class="btn btn-ghost" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
+        <a href="#" class="btn btn-ghost detail-btn" data-idx="5" style="padding:9px 18px; font-size:0.85rem;">Chi tiết</a>
         <a href="https://drive.google.com/file/d/1AMQ5TvpCD_i1rgxPGWxSw9J8zAnvzuVR/view?usp=drive_link" target="_blank" rel="noopener" class="btn btn-primary" style="padding:9px 18px; font-size:0.85rem;">GG Drive</a>
       </div>
     </div>
   </div>
 </section>
+
+<div class="modal-overlay" id="modalOverlay">
+  <div class="modal-card">
+    <button class="modal-close" id="modalClose" type="button" aria-label="Đóng">✕</button>
+    <div class="modal-head">
+      <span class="modal-icon" id="modalIcon"></span>
+      <h3 id="modalTitle"></h3>
+    </div>
+    <div class="modal-fields">
+      <div class="row"><b>Mục tiêu:</b> <span id="modalGoal"></span></div>
+      <div class="row"><b>Quá trình thực hiện:</b> <span id="modalProcess"></span></div>
+    </div>
+    <a href="#" id="modalLink" class="modal-link" target="_blank" rel="noopener">📁 Xem tài liệu chi tiết</a>
+    <div class="detail-list" id="modalPoints"></div>
+  </div>
+</div>
 
 <section id="tong-ket">
   <div class="summary-card reveal">
@@ -420,6 +467,121 @@ made by Nguyễn Phương Thảo — cảm ơn bạn đã ghé thăm!
 
 
 <script>
+  // ===== Dữ liệu chi tiết 6 bài tập (dùng cho modal "Xem chi tiết") =====
+  const exercises = [
+    {
+      icon: "🗂️", title: "Quản lý tệp tin & thư mục",
+      goal: "Thành thạo thao tác với tệp, thư mục để xây thói quen sắp xếp dữ liệu học tập gọn gàng, khoa học.",
+      process: "Luyện tạo - sắp xếp - sao lưu tệp bằng cả chuột lẫn phím tắt, đồng thời tìm hiểu cơ chế khôi phục dữ liệu an toàn qua Thùng rác.",
+      link: "https://drive.google.com/file/d/1jUuheSvjzrUdZ30xw4dOOxcdSUq0B-tj/view?usp=drive_link",
+      points: [
+        { b: "Nền tảng tổ chức dữ liệu", t: "Nắm chắc những thao tác tưởng đơn giản nhưng thiết yếu: tạo thư mục con, sao chép, di chuyển, đổi tên tệp theo một hệ thống có logic rõ ràng." },
+        { b: "Tăng tốc bằng phím tắt", t: "Sử dụng nhuần nhuyễn Windows + E, Ctrl + C/V/X để rút ngắn thời gian thao tác so với việc chỉ dùng chuột." },
+        { b: "Phân biệt xoá tạm và xoá hẳn", t: "Hiểu rõ sự khác nhau giữa đưa tệp vào Thùng rác và xoá vĩnh viễn bằng Shift + Delete, nhờ đó chủ động khôi phục khi cần." },
+        { b: "Tổng kết bài học", t: "Bài tập tưởng nhỏ này lại là nền tảng cho một thói quen lưu trữ khoa học, giúp mình an tâm hơn khi khối lượng tài liệu học phần ngày một dày lên.", summary: true },
+      ]
+    },
+    {
+      icon: "🔎", title: "Đánh giá học thuật",
+      goal: "Rèn khả năng tìm kiếm, sàng lọc và đánh giá độ tin cậy của nguồn tài liệu trước khi đưa vào bài viết.",
+      process: "Đối chiếu nhiều nguồn khác nhau, ưu tiên các công trình có bình duyệt, và trình bày trích dẫn theo chuẩn Harvard.",
+      link: "https://drive.google.com/file/d/1wXNVi9x4PdUUEvqXigWDU1H1F31WY1wg/view?usp=drive_link",
+      points: [
+        { b: "Bộ tiêu chí đánh giá nguồn", t: "Học cách nhận diện độ tin cậy của một tài liệu dựa trên uy tín tác giả, đơn vị xuất bản, chỉ số trích dẫn và việc có qua bình duyệt hay không." },
+        { b: "Chuẩn hoá trích dẫn", t: "Thành thạo cách trình bày danh mục tham khảo theo chuẩn Harvard - kỹ năng bắt buộc trong nghiên cứu học thuật nghiêm túc." },
+        { b: "Tư duy đối chiếu đa nguồn", t: "Hiểu rằng mỗi loại nguồn phục vụ một mục đích khác nhau, nên biết phối hợp giữa nguồn chuyên sâu và nguồn cập nhật thực tiễn để có góc nhìn toàn diện." },
+        { b: "Tổng kết bài học", t: "Kỹ năng sàng lọc nguồn tin cậy này giúp mình tự tin hơn khi trích dẫn và xây dựng lập luận cho các bài viết học thuật sau này.", summary: true },
+      ]
+    },
+    {
+      icon: "🤖", title: "Viết Prompt hiệu quả",
+      goal: "Làm chủ cách xây dựng câu lệnh (prompt) có cấu trúc để khai thác tối đa năng lực của các mô hình ngôn ngữ lớn.",
+      process: "Thử nghiệm khung C.O.R.E, kết hợp kỹ thuật gán vai trò, ví dụ mẫu và yêu cầu suy luận từng bước để nâng chất lượng phản hồi của AI.",
+      link: "https://drive.google.com/file/d/1K-_LqeNYu0N5WNBrqx59kOIqZRW2NNBL/view?usp=drive_link",
+      points: [
+        { b: "Tư duy thiết kế prompt", t: "Biết chuyển từ việc hỏi qua loa sang xây dựng câu lệnh có cấu trúc theo mô hình C.O.R.E, biến AI thành trợ lý chuyên biệt cho từng nhu cầu." },
+        { b: "Kỹ thuật nâng chất lượng đầu ra", t: "Vận dụng gán vai trò, ví dụ mẫu (few-shot) và yêu cầu suy luận từng bước (chain-of-thought) để giảm tình trạng AI trả lời chung chung." },
+        { b: "Đầu tư thời gian đúng chỗ", t: "Nhận ra rằng dành thời gian viết prompt kỹ càng ngay từ đầu giúp tiết kiệm đáng kể công sức chỉnh sửa về sau." },
+        { b: "Tổng kết bài học", t: "Dự án này rèn cho mình không chỉ kỹ năng ra lệnh cho AI mà còn cả tư duy logic và khả năng diễn đạt chính xác.", summary: true },
+      ]
+    },
+    {
+      icon: "🤝", title: "Hợp tác trực tuyến",
+      goal: "Sử dụng thành thạo các công cụ cộng tác trực tuyến để phối hợp làm việc nhóm trơn tru hơn.",
+      process: "Kết hợp Trello để theo dõi tiến độ và trao đổi nhanh, chia nhỏ đầu việc kèm deadline cụ thể cho từng thành viên.",
+      link: "https://drive.google.com/file/d/1D_aosycNsu8bsRnPVQMLehY-FlwMp6nE/view?usp=drive_link",
+      points: [
+        { b: "Phối hợp công cụ hợp lý", t: "Biết kết hợp Trello, Google Drive và Google Docs thành một quy trình thống nhất thay vì dùng rời rạc, thiếu liên kết." },
+        { b: "Kỷ luật cập nhật công việc", t: "Tạo thói quen cập nhật trạng thái công việc trực tiếp trên hệ thống chung, giúp cả nhóm nắm tiến độ minh bạch." },
+        { b: "Chủ động quản lý bản thân", t: "Biết chia nhỏ nhiệm vụ lớn thành các đầu việc rõ ràng, có mốc thời gian, để tránh dồn việc vào phút chót." },
+        { b: "Tổng kết bài học", t: "Không chỉ nắm chắc công cụ, mình còn hình thành được tư duy làm việc nhóm hiện đại - kỹ năng mềm không thể thiếu trong môi trường số.", summary: true },
+      ]
+    },
+    {
+      icon: "🎨", title: "Sáng tạo nội dung với AI",
+      goal: "Ứng dụng AI tạo sinh để làm sản phẩm trình bày sinh động hơn mà vẫn giữ được dấu ấn cá nhân.",
+      process: "Phối hợp ChatGPT, DALL·E và Canva AI để lên ý tưởng, dựng hình và hoàn thiện sản phẩm theo tỷ lệ 40% AI - 60% cá nhân.",
+      link: "https://drive.google.com/file/d/1S8Oi1Vss0kzMg9Byl3ylenz1NzRc8tjl/view?usp=drive_link",
+      points: [
+        { b: "AI là trợ lý, không thay thế", t: "Hiểu rằng AI giúp giảm tải công đoạn tìm ý tưởng và dựng hình, nhưng phong cách và quyết định cuối cùng vẫn thuộc về mình." },
+        { b: "Kỹ năng ra lệnh và tinh chỉnh", t: "Luyện cách mô tả yêu cầu chi tiết, sau đó tinh chỉnh prompt liên tục khi kết quả ban đầu chưa như mong muốn." },
+        { b: "Không sao chép mù quáng", t: "Hình thành thói quen luôn kiểm tra, chỉnh sửa nội dung do AI tạo ra để đảm bảo đúng ngữ cảnh và chính xác về thông tin." },
+        { b: "Tổng kết bài học", t: "Mình đã chuyển từ vai trò người dùng công cụ thụ động sang người điều phối quy trình sáng tạo, biết cân bằng giữa sức mạnh AI và dấu ấn cá nhân.", summary: true },
+      ]
+    },
+    {
+      icon: "⚖️", title: "Sử dụng AI có trách nhiệm",
+      goal: "Hiểu rõ nguyên tắc liêm chính học thuật khi ứng dụng AI vào việc học và nghiên cứu.",
+      process: "Tìm hiểu quy định của trường về sử dụng AI, tự đối chiếu nội dung AI tạo ra với nguồn gốc, đồng thời trích dẫn minh bạch.",
+      link: "https://drive.google.com/file/d/1AMQ5TvpCD_i1rgxPGWxSw9J8zAnvzuVR/view?usp=drive_link",
+      points: [
+        { b: "Ranh giới hỗ trợ và gian lận", t: "Phân biệt rõ giữa dùng AI như trợ lý học tập (gợi ý ý tưởng, dàn ý) với hành vi sao chép nguyên văn - vốn là gian lận học thuật." },
+        { b: "Không tin tuyệt đối vào AI", t: "Luôn đối chiếu, kiểm chứng thông tin AI đưa ra với nguồn học thuật đáng tin cậy trước khi đưa vào sản phẩm cuối." },
+        { b: "Minh bạch trong trích dẫn", t: "Nhận thức rõ tầm quan trọng của việc công khai vai trò của AI trong bài làm và trích dẫn nguồn đầy đủ để tôn trọng bản quyền." },
+        { b: "Tổng kết bài học", t: "Dự án đã giúp mình xây dựng một khung nguyên tắc cá nhân vững vàng, để sử dụng AI một cách chủ động, có trách nhiệm và tự tin hơn.", summary: true },
+      ]
+    },
+  ];
+
+  // ===== Modal chi tiết bài tập =====
+  const modalOverlay = document.getElementById('modalOverlay');
+  const modalIcon = document.getElementById('modalIcon');
+  const modalTitle = document.getElementById('modalTitle');
+  const modalGoal = document.getElementById('modalGoal');
+  const modalProcess = document.getElementById('modalProcess');
+  const modalLink = document.getElementById('modalLink');
+  const modalPoints = document.getElementById('modalPoints');
+  const modalClose = document.getElementById('modalClose');
+
+  function openExerciseModal(ex){
+    modalIcon.textContent = ex.icon;
+    modalTitle.textContent = ex.title;
+    modalGoal.textContent = ex.goal;
+    modalProcess.textContent = ex.process;
+    modalLink.href = ex.link;
+    modalPoints.innerHTML = ex.points.map(p => `
+      <div class="detail-point${p.summary ? ' summary' : ''}">
+        <span class="dot"></span>
+        <span><b>${p.b}:</b> ${p.t}</span>
+      </div>`).join('');
+    modalOverlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeExerciseModal(){
+    modalOverlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.querySelectorAll('.detail-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.preventDefault();
+      const idx = parseInt(btn.getAttribute('data-idx'), 10);
+      openExerciseModal(exercises[idx]);
+    });
+  });
+  modalClose.addEventListener('click', closeExerciseModal);
+  modalOverlay.addEventListener('click', (e) => { if(e.target === modalOverlay) closeExerciseModal(); });
+  window.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeExerciseModal(); });
+
   // Floating cute stickers with parallax on scroll
   const stickerEmojis = ['🍑','🧡','✨','🍊','🌼','🧸','⭐','🍯'];
   const layer = document.getElementById('sticker-layer');
